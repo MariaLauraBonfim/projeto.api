@@ -16,3 +16,16 @@ No site, localize a seção de 'Downloads e selecione o sistema operacional que 
 
 Passo 3: Escolha a versão Selecione a versão do Python que deseja instalar, Recomenda-se sempre a versão mais recente estável.
 
+Instalação do Python
+
+Após o download, siga os passos abaixo para instalar o Python em seu sistema:
+
+Passo 1: Execute o Instalador Abra o arquivo de instalação baixado e siga as instruções na tela. No Windows, certifique-se de marcar a opção 'Add Python to PATH' 
+antes de clicar em "Install Now'.
+
+Passo 2: Verifique a instalação Abra o terminal ou prompt de comando e digite python --version. 
+Se a instalação foi bem-sucedida, o sistema exibirá a versão do Python instalada.
+
+Passo 3: Atualize o pip (gerenciador de pacotes) 
+No terminal, execute `python-m ensurepip-upgrade para garantir que o pip esteja atualizado.
+
