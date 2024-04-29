@@ -1,0 +1,18 @@
+Tutorial de Instalação do Python
+
+O que é Python?
+
+Python é uma linguagem de programação de alto nível, interpretada e com uma sintaxe que prioriza a legibilidade do código. 
+É utilizada em diversas áreas, como desenvolvimento web, análise de dados, inteligência artificial e automação.
+
+Download do Python
+
+Siga os passos abaixo para fazer o download do Python:
+
+Passo 1: Acesse o site oficial Visite o site oficial do Python em [python.org](https://python.org).
+
+Passo 2: Navegue até a seção de Downloads
+No site, localize a seção de 'Downloads e selecione o sistema operacional que você está usando (Windows, MacOS, Linux).
+
+Passo 3: Escolha a versão Selecione a versão do Python que deseja instalar, Recomenda-se sempre a versão mais recente estável.
+
