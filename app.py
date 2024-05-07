@@ -7,4 +7,4 @@ def index():
     return render_template("index.html")
 
 from api import bp
-app.register_blueprint(bp)
+app.register_blueprint(bp)  
