@@ -6,53 +6,57 @@ bp = Blueprint("api", __name__)
 
 @bp.route("/api", methods=("GET",))
 def index():
-    return jsonify({"status": 200, "mensagem": "API de Maria Laura"})
+    return jsonify({"status": 200, "data": "API do Aluno"})
 
-@bp.route("/api/aleatorios") # decorator de rotas
+@bp.route("/api/aleatorios", methods=("GET",)) # decorator de rota
 def aleatorios(): # função python
     import random
     a = random.randint(49, 100)
-    return jsonify({"status": 200, "data": a})
+    return jsonify({"status": 200, "data": a}) # retorno
 
-@bp.route("/api/argumentos/<string:nome>")
+@bp.route("/api/argumentos/<string:nome>", methods=("GET",))
 def argumentos(nome: str):
-    return jsonify({"status": 200, "data": nome })
+    return jsonify({"status": 200, "data": nome})
 
 @bp.route("/api/argumentos", methods=("GET",))
-def arg_implicito(nome: str):
-    return jsonify({"status": 200, "data": nome })
+def arg_implicito():
+    return jsonify({"status": 200, "data": request.args["nome"]})
 
-@bp.route("/api/idades", methods=("GET, "))
+@bp.route("/api/idades", methods=("GET",))
 def idades():
     from random_data import pessoas
     import funcoes
-    num = funcoes.maior_de_50(pessoas)
-    return jsonify({"status": 200, "data": num})
+    if request.args.get("sexo"):
+        idades = funcoes.maior_2000_sexo(pessoas, sexo="Masculino") # retorna profissões
+        homens = {"total": idades[0], "%":idades[1]}
+        idades = funcoes.maior_2000_sexo(pessoas, sexo="Feminino") # retorna profissões
+        mulheres = {"total": idades[0], "%":idades[1]}
 
-@bp.route("/api/salarios", methods=("GET,"))
+        return jsonify({"status": 200, "data": {"homens": homens, "mulheres":mulheres}})
+    else:
+        num = funcoes.maior_de_50(pessoas)
+        return jsonify({"status": 200, "data": num})
+
+@bp.route("/api/salarios", methods=("GET",))
 def salarios():
-    from random_data import salarios
+    from random_data import pessoas
     import funcoes
-    num = funcoes.mais_2000(salarios)
-    return jsonify({"status": 200, "data": num })
+    num = funcoes.mais_2000(pessoas)
+    return jsonify({"status": 200, "data": {"registros": num[2], "porcentagem": num[1], "total": num[0]}})
 
-@bp.route("/api/maiores_salarios", methods=("GET,"))
+@bp.route("/api/maiores_salarios", methods=("GET", ))
 def maiores_salarios():
-    from random_data import maiores_salarios
+    from random_data import pessoas
     import funcoes
-    num = funcoes.maior_salario(maiores_salarios)
-    return jsonify({"status": 200, "data": num })
+    pessoa1 = funcoes.maior_salario(pessoas)
+    pessoa2 = funcoes.maior_salario(pessoas, float(pessoa1['salario']))
+    pessoa3 = funcoes.maior_salario(pessoas, float(pessoa2['salario']))
+    return jsonify({"status": 200, "data": {"pessoa1": pessoa1
+                                , "pessoa2": pessoa2, "pessoa3": pessoa3}})
 
-@bp.route("/api/media_profissoes", methods=("GET,"))
-def media_profissoes():
-    from random_data import media_profissoes
+@bp.route("/api/profissoes", methods=("GET", ))
+def profissoes():
+    from random_data import pessoas
     import funcoes
-    num = funcoes.media_profissoes(media_profissoes)
-    return jsonify({"status": 200, "data": num})
-
-@bp.route("/api/intervalo_idades_mais2000_sexo", methods=("GET, "))
-def intervalo_idades_mais200_sexo():
-    from random_data import intervalo_idades_mais2000_sexo
-    import funcoes
-    num = funcoes.maior_2000_sexo(intervalo_idades_mais2000_sexo)
-    return jsonify({"status": 200, "data": num})
+    profissoes = funcoes.media_profissoes(pessoas)
+    return jsonify({"status": 200, "data": profissoes})
