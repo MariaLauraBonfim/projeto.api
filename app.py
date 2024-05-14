@@ -7,4 +7,7 @@ def index():
     return render_template("index.html")
 
 from api import bp
-app.register_blueprint(bp)  
+app.register_blueprint(bp)
+
+if __name__ == '_main_':
+    app.run(host="0.0.0.0")
